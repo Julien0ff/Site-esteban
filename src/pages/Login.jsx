@@ -5,8 +5,8 @@ import gsap from 'gsap';
 import { GraduationCap } from 'lucide-react';
 
 const Login = () => {
-  const [loginId, setLoginId] = useState('admin');
-  const [pw, setPw] = useState('admin');
+  const [loginId, setLoginId] = useState('');
+  const [pw, setPw] = useState('');
   const [error, setError] = useState(false);
   const navigate = useNavigate();
   const { login } = useAuth();
@@ -80,9 +80,7 @@ const Login = () => {
           )}
         </form>
 
-        <div className="mt-8 text-center text-xs text-[#8b92b2]">
-          Compte admin démo : <b className="text-[#e8eaf0]">admin / admin</b>
-        </div>
+
       </div>
     </div>
   );
