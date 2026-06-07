@@ -217,59 +217,64 @@ const Admin = () => {
 
   return (
     <div className="pb-20">
-      <div className="mb-10">
-        <h1 className="text-4xl font-extrabold mb-2 flex items-center gap-3">
-          <ShieldAlert className="text-[#ff6584]" size={36} />
+      <div className="mb-12 relative">
+        <div className="absolute -top-10 -left-10 w-40 h-40 bg-pink-500 rounded-full mix-blend-screen filter blur-[80px] opacity-20"></div>
+        <h1 className="text-4xl font-extrabold mb-3 flex items-center gap-4 font-['Outfit'] text-gradient">
+          <div className="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center border border-pink-500/30">
+            <ShieldAlert className="text-pink-400" size={24} />
+          </div>
           Administration
         </h1>
-        <p className="text-[#8b92b2] text-lg">Gérez les accès élèves et le contenu des cours</p>
+        <p className="text-[#9ca3af] text-lg">Gérez les accès élèves et le contenu de la plateforme premium</p>
       </div>
 
-      <div className="flex gap-2 mb-8 border-b border-[rgba(255,255,255,0.05)] pb-4">
+      <div className="flex gap-2 mb-10 bg-[rgba(17,24,39,0.5)] p-2 rounded-2xl border border-[rgba(255,255,255,0.05)] w-fit backdrop-blur-md relative z-10 shadow-lg">
         <button 
           onClick={() => setActiveTab('users')}
-          className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all ${activeTab === 'users' ? 'bg-[#ff6584] text-white' : 'text-[#8b92b2] hover:bg-[rgba(255,255,255,0.05)]'}`}
+          className={`flex items-center gap-3 px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300 ${activeTab === 'users' ? 'bg-pink-500 text-white shadow-[0_4px_20px_rgba(236,72,153,0.4)]' : 'text-[#9ca3af] hover:text-white hover:bg-[rgba(255,255,255,0.05)]'}`}
         >
           <UserPlus size={18} /> Gestion des Élèves
         </button>
         <button 
           onClick={() => setActiveTab('content')}
-          className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold transition-all ${activeTab === 'content' ? 'bg-[#6c63ff] text-white' : 'text-[#8b92b2] hover:bg-[rgba(255,255,255,0.05)]'}`}
+          className={`flex items-center gap-3 px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300 ${activeTab === 'content' ? 'bg-indigo-500 text-white shadow-[0_4px_20px_rgba(99,102,241,0.4)]' : 'text-[#9ca3af] hover:text-white hover:bg-[rgba(255,255,255,0.05)]'}`}
         >
           <Database size={18} /> Gestion du Contenu
         </button>
       </div>
 
       {activeTab === 'users' && (
-        <div className="animate-in fade-in slide-in-from-bottom-4">
-          <div className="glass-card p-8 mb-8 border-[#ff6584] bg-gradient-to-br from-[rgba(30,33,48,0.7)] to-[rgba(255,101,132,0.05)]">
-            <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-              <UserPlus size={20} className="text-[#ff6584]" />
-              {editingUser ? 'Modifier un compte' : 'Ajouter un élève'}
+        <div className="animate-in fade-in slide-in-from-bottom-4 relative z-10">
+          <div className="glass-card p-10 mb-10 bg-gradient-to-br from-[rgba(17,24,39,0.8)] to-[rgba(236,72,153,0.05)] border-pink-500/20">
+            <h3 className="text-2xl font-bold mb-8 flex items-center gap-3 font-['Outfit']">
+              <div className="p-2 bg-pink-500/10 rounded-lg border border-pink-500/20">
+                <UserPlus size={20} className="text-pink-400" />
+              </div>
+              {editingUser ? 'Modifier un compte élève' : 'Ajouter un nouvel élève'}
             </h3>
             
-            {userError && <div className="mb-4 p-3 bg-[rgba(255,101,132,0.1)] text-[#ff6584] border border-[rgba(255,101,132,0.3)] rounded-lg text-sm">{userError}</div>}
-            {userSuccess && <div className="mb-4 p-3 bg-[rgba(67,233,123,0.1)] text-[#43e97b] border border-[rgba(67,233,123,0.3)] rounded-lg text-sm">{userSuccess}</div>}
+            {userError && <div className="mb-6 p-4 bg-rose-500/10 text-rose-400 border border-rose-500/30 rounded-xl font-medium animate-pulse">{userError}</div>}
+            {userSuccess && <div className="mb-6 p-4 bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 rounded-xl font-medium">{userSuccess}</div>}
 
-            <form onSubmit={handleAddUser} className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+            <form onSubmit={handleAddUser} className="grid grid-cols-1 md:grid-cols-4 gap-5 items-end">
               <div className="input-group mb-0">
                 <label>Prénom Nom</label>
-                <input type="text" className="input-field py-2.5 px-4" value={name} onChange={e => setName(e.target.value)} />
+                <input type="text" className="input-field py-3 px-5" value={name} onChange={e => setName(e.target.value)} />
               </div>
               <div className="input-group mb-0">
                 <label>Identifiant</label>
-                <input type="text" className="input-field py-2.5 px-4" value={login} onChange={e => setLogin(e.target.value)} />
+                <input type="text" className="input-field py-3 px-5" value={login} onChange={e => setLogin(e.target.value)} />
               </div>
               <div className="input-group mb-0">
                 <label>Mot de passe</label>
-                <input type="text" className="input-field py-2.5 px-4" value={pw} onChange={e => setPw(e.target.value)} />
+                <input type="text" className="input-field py-3 px-5" value={pw} onChange={e => setPw(e.target.value)} />
               </div>
-              <div className="flex flex-col gap-2">
-                <button type="submit" className="btn-primary py-2.5 px-4 h-11 flex items-center justify-center bg-gradient-to-r from-[#ff6584] to-[#f093fb]">
+              <div className="flex flex-col gap-3">
+                <button type="submit" className="btn-primary py-3 px-5 h-12 flex items-center justify-center bg-gradient-to-r from-pink-500 to-rose-500 shadow-[0_4px_15px_rgba(236,72,153,0.4)]">
                   {editingUser ? 'Enregistrer' : 'Ajouter'}
                 </button>
                 {editingUser && (
-                  <button type="button" onClick={cancelEditUser} className="btn-outline py-1.5 px-4 h-9 flex items-center justify-center text-xs">
+                  <button type="button" onClick={cancelEditUser} className="btn-outline py-2 px-5 h-10 flex items-center justify-center text-xs">
                     Annuler
                   </button>
                 )}
@@ -278,47 +283,47 @@ const Admin = () => {
           </div>
 
           <div className="glass-card overflow-hidden">
-            <div className="p-6 border-b border-[rgba(255,255,255,0.05)]">
-              <h3 className="text-xl font-bold">Liste des comptes</h3>
+            <div className="p-8 border-b border-[rgba(255,255,255,0.05)] bg-[rgba(17,24,39,0.5)]">
+              <h3 className="text-2xl font-bold font-['Outfit']">Liste des comptes</h3>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="bg-[rgba(15,17,26,0.6)]">
-                    <th className="p-4 text-xs font-bold text-[#8b92b2] uppercase tracking-wider">Nom</th>
-                    <th className="p-4 text-xs font-bold text-[#8b92b2] uppercase tracking-wider">Identifiant</th>
-                    <th className="p-4 text-xs font-bold text-[#8b92b2] uppercase tracking-wider">Mot de passe</th>
-                    <th className="p-4 text-xs font-bold text-[#8b92b2] uppercase tracking-wider">Rôle</th>
-                    <th className="p-4 text-xs font-bold text-[#8b92b2] uppercase tracking-wider text-right">Action</th>
+                  <tr className="bg-[rgba(17,24,39,0.8)] border-b border-[rgba(255,255,255,0.05)]">
+                    <th className="p-5 text-xs font-bold text-[#9ca3af] uppercase tracking-widest">Nom</th>
+                    <th className="p-5 text-xs font-bold text-[#9ca3af] uppercase tracking-widest">Identifiant</th>
+                    <th className="p-5 text-xs font-bold text-[#9ca3af] uppercase tracking-widest">Mot de passe</th>
+                    <th className="p-5 text-xs font-bold text-[#9ca3af] uppercase tracking-widest">Rôle</th>
+                    <th className="p-5 text-xs font-bold text-[#9ca3af] uppercase tracking-widest text-right">Action</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[rgba(255,255,255,0.05)]">
                   {usersDb.map((u, i) => (
-                    <tr key={i} className="hover:bg-[rgba(255,255,255,0.02)] transition-colors">
-                      <td className="p-4 font-medium">{u.name}</td>
-                      <td className="p-4">
-                        <span className="bg-[rgba(15,17,26,0.8)] px-2 py-1 rounded-md text-sm font-mono text-[#8b92b2]">{u.login}</span>
+                    <tr key={i} className="hover:bg-[rgba(255,255,255,0.02)] transition-colors group">
+                      <td className="p-5 font-semibold text-white">{u.name}</td>
+                      <td className="p-5">
+                        <span className="bg-[rgba(3,7,18,0.6)] px-3 py-1.5 rounded-md text-sm font-mono text-[#9ca3af] border border-[rgba(255,255,255,0.05)]">{u.login}</span>
                       </td>
-                      <td className="p-4">
-                        <span className="bg-[rgba(15,17,26,0.8)] px-2 py-1 rounded-md text-sm font-mono text-[#8b92b2]">{u.pw}</span>
+                      <td className="p-5">
+                        <span className="bg-[rgba(3,7,18,0.6)] px-3 py-1.5 rounded-md text-sm font-mono text-[#9ca3af] border border-[rgba(255,255,255,0.05)]">{u.pw}</span>
                       </td>
-                      <td className="p-4">
+                      <td className="p-5">
                         <span className={`badge ${u.role === 'admin' ? 'badge-admin' : 'badge-student'}`}>
                           {u.role === 'admin' ? '⚙️ Admin' : '📚 Élève'}
                         </span>
                       </td>
-                      <td className="p-4 text-right">
-                        <div className="flex items-center justify-end gap-2">
+                      <td className="p-5 text-right">
+                        <div className="flex items-center justify-end gap-2 opacity-60 group-hover:opacity-100 transition-opacity">
                           <button 
                             onClick={() => handleEditUser(u)}
-                            className="p-2 text-[#4facfe] hover:bg-[rgba(79,172,254,0.1)] rounded-lg transition-colors"
+                            className="p-2 text-indigo-400 hover:bg-indigo-400/10 rounded-lg transition-colors"
                           >
                             <Edit2 size={18} />
                           </button>
                           {u.login !== user.login && u.role !== 'admin' && (
                             <button 
                               onClick={() => deleteUser(u.login)}
-                              className="p-2 text-[#ff6584] hover:bg-[rgba(255,101,132,0.1)] rounded-lg transition-colors"
+                              className="p-2 text-rose-400 hover:bg-rose-400/10 rounded-lg transition-colors"
                             >
                               <Trash2 size={18} />
                             </button>
@@ -335,44 +340,44 @@ const Admin = () => {
       )}
 
       {activeTab === 'content' && (
-        <div className="animate-in fade-in slide-in-from-bottom-4">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        <div className="animate-in fade-in slide-in-from-bottom-4 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-10">
             {/* Sidebar Matières */}
             <div className="lg:col-span-1 flex flex-col gap-3">
-              <h3 className="text-lg font-bold mb-2">1. Choisir une matière</h3>
+              <h3 className="text-lg font-bold mb-3 font-['Outfit'] uppercase tracking-widest text-[#9ca3af] text-sm">1. Choisir la matière</h3>
               {Object.entries(subjects).map(([id, m]) => (
                 <button
                   key={id}
                   onClick={() => setSelectedSubj(id)}
-                  className={`flex items-center gap-3 p-4 rounded-xl border text-left transition-all ${
+                  className={`flex items-center gap-4 p-4 rounded-2xl border text-left transition-all duration-300 ${
                     selectedSubj === id 
-                      ? 'bg-[rgba(108,99,255,0.1)] border-[#6c63ff] shadow-[0_0_15px_rgba(108,99,255,0.2)]' 
-                      : 'bg-[rgba(15,17,26,0.5)] border-[rgba(255,255,255,0.05)] hover:border-[#8b92b2]'
+                      ? 'bg-indigo-500/10 border-indigo-500/50 shadow-[inset_0_0_20px_rgba(99,102,241,0.1)] text-white' 
+                      : 'bg-[rgba(17,24,39,0.5)] border-[rgba(255,255,255,0.05)] hover:border-indigo-500/30 text-[#9ca3af] hover:text-white'
                   }`}
                 >
-                  <span className="text-2xl">{m.icon === '🇬🇧' ? '🌍' : m.icon}</span>
-                  <span className="font-bold flex-1">{m.name}</span>
+                  <span className="text-2xl drop-shadow-md">{m.icon === '🇬🇧' ? '🌍' : m.icon}</span>
+                  <span className="font-bold flex-1 text-[1.05rem] font-['Outfit']">{m.name}</span>
                 </button>
               ))}
             </div>
 
             {/* Contenu */}
             <div className="lg:col-span-3">
-              <h3 className="text-lg font-bold mb-4">2. Gérer le contenu : {subjects[selectedSubj].name}</h3>
+              <h3 className="text-lg font-bold mb-5 font-['Outfit'] uppercase tracking-widest text-[#9ca3af] text-sm">2. Gérer le contenu : <span className="text-white capitalize">{subjects[selectedSubj].name}</span></h3>
               
-              <div className="flex gap-2 mb-6 bg-[rgba(15,17,26,0.6)] p-1.5 rounded-xl border border-[rgba(255,255,255,0.05)] w-fit">
+              <div className="flex gap-2 mb-8 bg-[rgba(17,24,39,0.5)] p-2 rounded-2xl border border-[rgba(255,255,255,0.05)] w-fit shadow-lg backdrop-blur-md">
                 {[
-                  { id: 'fiches', icon: <BookOpen size={16} />, label: 'Fiches' },
-                  { id: 'qcm', icon: <Brain size={16} />, label: 'QCM' },
-                  { id: 'videos', icon: <Video size={16} />, label: 'Vidéos' }
+                  { id: 'fiches', icon: <BookOpen size={18} />, label: 'Fiches Markdown' },
+                  { id: 'qcm', icon: <Brain size={18} />, label: 'QCM' },
+                  { id: 'videos', icon: <Video size={18} />, label: 'Vidéos' }
                 ].map(tab => (
                   <button
                     key={tab.id}
                     onClick={() => setContentTab(tab.id)}
-                    className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all ${
+                    className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 ${
                       contentTab === tab.id 
-                        ? 'bg-[#6c63ff] text-white shadow-[0_4px_12px_rgba(108,99,255,0.3)]' 
-                        : 'text-[#8b92b2] hover:text-white hover:bg-[rgba(255,255,255,0.05)]'
+                        ? 'bg-indigo-500 text-white shadow-[0_4px_15px_rgba(99,102,241,0.4)]' 
+                        : 'text-[#9ca3af] hover:text-white hover:bg-[rgba(255,255,255,0.05)]'
                     }`}
                   >
                     {tab.icon} {tab.label}
@@ -380,29 +385,35 @@ const Admin = () => {
                 ))}
               </div>
 
-              {contentSuccess && <div className="mb-6 p-4 bg-[rgba(67,233,123,0.1)] text-[#43e97b] border border-[rgba(67,233,123,0.3)] rounded-xl font-medium">{contentSuccess}</div>}
+              {contentSuccess && <div className="mb-8 p-4 bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 rounded-xl font-medium">{contentSuccess}</div>}
 
               {/* TAB: FICHES */}
               {contentTab === 'fiches' && (
                 <div className="animate-in fade-in">
-                  <div className="glass-card p-6 border-[#6c63ff] bg-gradient-to-br from-[rgba(30,33,48,0.7)] to-[rgba(108,99,255,0.05)] mb-8">
-                    <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-                      <PlusCircle size={18} className="text-[#6c63ff]" /> {editingFiche !== null ? 'Modifier la Fiche' : 'Créer une Fiche'}
+                  <div className="glass-card p-10 border-indigo-500/20 bg-gradient-to-br from-[rgba(17,24,39,0.8)] to-[rgba(99,102,241,0.05)] mb-10">
+                    <h3 className="text-2xl font-bold mb-8 flex items-center gap-3 font-['Outfit']">
+                      <div className="p-2 bg-indigo-500/10 rounded-lg border border-indigo-500/20">
+                        <PlusCircle size={20} className="text-indigo-400" /> 
+                      </div>
+                      {editingFiche !== null ? 'Modifier la Fiche Markdown' : 'Créer une Fiche Markdown'}
                     </h3>
                     <form onSubmit={handleAddFiche}>
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-2 gap-6">
                         <div className="input-group">
                           <label>Titre de la fiche</label>
                           <input type="text" className="input-field" value={ficheTitle} onChange={e => setFicheTitle(e.target.value)} required />
                         </div>
                         <div className="input-group">
                           <label>Niveau</label>
-                          <input type="text" className="input-field" value={ficheNiveau} onChange={e => setFicheNiveau(e.target.value)} required />
+                          <input type="text" className="input-field" value={ficheNiveau} onChange={e => setFicheNiveau(e.target.value)} placeholder="Ex: Fondamental, Expert..." required />
                         </div>
                       </div>
-                      <div className="input-group mb-6">
-                        <label>Contenu Markdown</label>
-                        <textarea className="input-field min-h-[150px] font-mono text-sm" value={ficheContent} onChange={e => setFicheContent(e.target.value)} placeholder="# Titre principal&#10;&#10;## Sous-titre&#10;&#10;**Texte en gras** et *italique*." required />
+                      <div className="input-group mb-8">
+                        <label className="flex items-center justify-between">
+                          <span>Contenu Markdown</span>
+                          <span className="text-xs font-normal lowercase bg-[rgba(255,255,255,0.05)] px-2 py-1 rounded text-[#9ca3af]">Supporte : # titres, **gras**, *italique*, - listes, `code`</span>
+                        </label>
+                        <textarea className="input-field min-h-[250px] font-mono text-sm leading-relaxed" value={ficheContent} onChange={e => setFicheContent(e.target.value)} placeholder="# Titre principal&#10;&#10;## Sous-titre&#10;&#10;**Texte en gras** et *italique*." required />
                       </div>
                       <div className="flex gap-4">
                         <button type="submit" className="btn-primary flex items-center gap-2">{editingFiche !== null ? 'Sauvegarder les modifications' : 'Ajouter la fiche'}</button>
@@ -413,21 +424,21 @@ const Admin = () => {
                     </form>
                   </div>
 
-                  <div className="glass-card p-6">
-                    <h3 className="text-lg font-bold mb-4">Fiches existantes ({subjects[selectedSubj].fiches.length})</h3>
-                    <div className="flex flex-col gap-2">
+                  <div className="glass-card p-8">
+                    <h3 className="text-2xl font-bold mb-6 font-['Outfit']">Fiches existantes ({subjects[selectedSubj].fiches.length})</h3>
+                    <div className="flex flex-col gap-3">
                       {subjects[selectedSubj].fiches.map((f, i) => (
-                        <div key={i} className="flex items-center justify-between p-3 bg-[rgba(15,17,26,0.5)] rounded-lg border border-[rgba(255,255,255,0.05)]">
+                        <div key={i} className="flex items-center justify-between p-4 bg-[rgba(17,24,39,0.5)] rounded-xl border border-[rgba(255,255,255,0.05)] hover:border-indigo-500/30 transition-colors group">
                           <div>
-                            <div className="font-semibold">{f.title}</div>
-                            <div className="text-xs text-[#8b92b2]">{f.niveau}</div>
+                            <div className="font-bold text-[1.05rem] mb-1 group-hover:text-indigo-300 transition-colors">{f.title}</div>
+                            <div className="text-xs font-bold text-[#9ca3af] uppercase tracking-widest">{f.niveau}</div>
                           </div>
-                          <div className="flex items-center gap-2">
-                            <button onClick={() => handleEditFiche(i)} className="text-[#4facfe] hover:bg-[rgba(79,172,254,0.1)] p-2 rounded-md">
-                              <Edit2 size={16} />
+                          <div className="flex items-center gap-2 opacity-60 group-hover:opacity-100 transition-opacity">
+                            <button onClick={() => handleEditFiche(i)} className="text-indigo-400 hover:bg-indigo-400/10 p-2.5 rounded-lg transition-colors">
+                              <Edit2 size={18} />
                             </button>
-                            <button onClick={() => deleteFiche(selectedSubj, i)} className="text-[#ff6584] hover:bg-[rgba(255,101,132,0.1)] p-2 rounded-md">
-                              <Trash2 size={16} />
+                            <button onClick={() => deleteFiche(selectedSubj, i)} className="text-rose-400 hover:bg-rose-400/10 p-2.5 rounded-lg transition-colors">
+                              <Trash2 size={18} />
                             </button>
                           </div>
                         </div>
@@ -440,17 +451,20 @@ const Admin = () => {
               {/* TAB: QCM */}
               {contentTab === 'qcm' && (
                 <div className="animate-in fade-in">
-                  <div className="glass-card p-6 border-[#43e97b] bg-gradient-to-br from-[rgba(30,33,48,0.7)] to-[rgba(67,233,123,0.05)] mb-8">
-                    <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-                      <PlusCircle size={18} className="text-[#43e97b]" /> {editingQCM !== null ? 'Modifier la question QCM' : 'Ajouter une question QCM'}
+                  <div className="glass-card p-10 border-emerald-500/20 bg-gradient-to-br from-[rgba(17,24,39,0.8)] to-[rgba(52,211,153,0.05)] mb-10">
+                    <h3 className="text-2xl font-bold mb-8 flex items-center gap-3 font-['Outfit']">
+                      <div className="p-2 bg-emerald-500/10 rounded-lg border border-emerald-500/20">
+                        <PlusCircle size={20} className="text-emerald-400" />
+                      </div>
+                      {editingQCM !== null ? 'Modifier la question QCM' : 'Ajouter une question QCM'}
                     </h3>
                     <form onSubmit={handleAddQCM}>
-                      <div className="input-group">
+                      <div className="input-group mb-6">
                         <label>Question</label>
                         <input type="text" className="input-field" value={qcmQuestion} onChange={e => setQcmQuestion(e.target.value)} required />
                       </div>
                       
-                      <div className="grid grid-cols-2 gap-4 mb-4">
+                      <div className="grid grid-cols-2 gap-6 mb-6">
                         <div className="input-group mb-0">
                           <label>Option 1</label>
                           <input type="text" className="input-field" value={qcmOpt1} onChange={e => setQcmOpt1(e.target.value)} required />
@@ -469,19 +483,19 @@ const Admin = () => {
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-2 gap-4">
-                        <div className="input-group">
+                      <div className="grid grid-cols-2 gap-6 mb-8">
+                        <div className="input-group mb-0">
                           <label>Index de la bonne réponse (0 = Opt 1, 1 = Opt 2...)</label>
                           <input type="number" min="0" max="3" className="input-field" value={qcmAnswer} onChange={e => setQcmAnswer(e.target.value)} required />
                         </div>
-                        <div className="input-group">
+                        <div className="input-group mb-0">
                           <label>Explication de la réponse</label>
                           <input type="text" className="input-field" value={qcmExpl} onChange={e => setQcmExpl(e.target.value)} required />
                         </div>
                       </div>
                       
-                      <div className="flex gap-4 mt-4">
-                        <button type="submit" className="btn-primary flex items-center gap-2 !bg-[#43e97b] !text-[#0b0c10] hover:!filter hover:!brightness-110 shadow-[0_4px_15px_rgba(67,233,123,0.3)]">
+                      <div className="flex gap-4">
+                        <button type="submit" className="btn-primary flex items-center gap-2 bg-gradient-to-r from-emerald-400 to-emerald-600 shadow-[0_4px_15px_rgba(52,211,153,0.3)] text-white">
                           {editingQCM !== null ? 'Sauvegarder les modifications' : 'Ajouter la question'}
                         </button>
                         {editingQCM !== null && (
@@ -491,18 +505,18 @@ const Admin = () => {
                     </form>
                   </div>
 
-                  <div className="glass-card p-6">
-                    <h3 className="text-lg font-bold mb-4">Questions existantes ({subjects[selectedSubj].qcm.length})</h3>
-                    <div className="flex flex-col gap-2">
+                  <div className="glass-card p-8">
+                    <h3 className="text-2xl font-bold mb-6 font-['Outfit']">Questions existantes ({subjects[selectedSubj].qcm.length})</h3>
+                    <div className="flex flex-col gap-3">
                       {subjects[selectedSubj].qcm.map((q, i) => (
-                        <div key={i} className="flex items-center justify-between p-3 bg-[rgba(15,17,26,0.5)] rounded-lg border border-[rgba(255,255,255,0.05)]">
-                          <div className="font-medium">{q.q}</div>
-                          <div className="flex items-center gap-2">
-                            <button onClick={() => handleEditQCM(i)} className="text-[#4facfe] hover:bg-[rgba(79,172,254,0.1)] p-2 rounded-md">
-                              <Edit2 size={16} />
+                        <div key={i} className="flex items-center justify-between p-4 bg-[rgba(17,24,39,0.5)] rounded-xl border border-[rgba(255,255,255,0.05)] hover:border-emerald-500/30 transition-colors group">
+                          <div className="font-semibold text-white group-hover:text-emerald-300 transition-colors">{q.q}</div>
+                          <div className="flex items-center gap-2 opacity-60 group-hover:opacity-100 transition-opacity">
+                            <button onClick={() => handleEditQCM(i)} className="text-indigo-400 hover:bg-indigo-400/10 p-2.5 rounded-lg transition-colors">
+                              <Edit2 size={18} />
                             </button>
-                            <button onClick={() => deleteQCM(selectedSubj, i)} className="text-[#ff6584] hover:bg-[rgba(255,101,132,0.1)] p-2 rounded-md">
-                              <Trash2 size={16} />
+                            <button onClick={() => deleteQCM(selectedSubj, i)} className="text-rose-400 hover:bg-rose-400/10 p-2.5 rounded-lg transition-colors">
+                              <Trash2 size={18} />
                             </button>
                           </div>
                         </div>
@@ -515,12 +529,15 @@ const Admin = () => {
               {/* TAB: VIDEOS */}
               {contentTab === 'videos' && (
                 <div className="animate-in fade-in">
-                  <div className="glass-card p-6 border-[#4facfe] bg-gradient-to-br from-[rgba(30,33,48,0.7)] to-[rgba(79,172,254,0.05)] mb-8">
-                    <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-                      <PlusCircle size={18} className="text-[#4facfe]" /> {editingVideo !== null ? 'Modifier la Vidéo' : 'Ajouter une Vidéo YouTube'}
+                  <div className="glass-card p-10 border-blue-500/20 bg-gradient-to-br from-[rgba(17,24,39,0.8)] to-[rgba(59,130,246,0.05)] mb-10">
+                    <h3 className="text-2xl font-bold mb-8 flex items-center gap-3 font-['Outfit']">
+                      <div className="p-2 bg-blue-500/10 rounded-lg border border-blue-500/20">
+                        <PlusCircle size={20} className="text-blue-400" />
+                      </div>
+                      {editingVideo !== null ? 'Modifier la Vidéo' : 'Ajouter une Vidéo YouTube'}
                     </h3>
                     <form onSubmit={handleAddVideo}>
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-2 gap-6">
                         <div className="input-group">
                           <label>Titre de la vidéo</label>
                           <input type="text" className="input-field" value={videoTitle} onChange={e => setVideoTitle(e.target.value)} required />
@@ -530,12 +547,12 @@ const Admin = () => {
                           <input type="text" className="input-field" value={videoChannel} onChange={e => setVideoChannel(e.target.value)} required />
                         </div>
                       </div>
-                      <div className="input-group mb-6">
+                      <div className="input-group mb-8">
                         <label>ID YouTube ou Lien complet</label>
                         <input type="text" className="input-field" value={videoId} onChange={e => setVideoId(e.target.value)} placeholder="Ex: dQw4w9WgXcQ ou https://youtube.com/watch?v=..." required />
                       </div>
                       <div className="flex gap-4">
-                        <button type="submit" className="btn-primary flex items-center gap-2 bg-gradient-to-r from-[#4facfe] to-[#00f2fe]">
+                        <button type="submit" className="btn-primary flex items-center gap-2 bg-gradient-to-r from-blue-500 to-indigo-500 shadow-[0_4px_15px_rgba(59,130,246,0.3)]">
                           {editingVideo !== null ? 'Sauvegarder les modifications' : 'Ajouter la vidéo'}
                         </button>
                         {editingVideo !== null && (
@@ -545,21 +562,21 @@ const Admin = () => {
                     </form>
                   </div>
 
-                  <div className="glass-card p-6">
-                    <h3 className="text-lg font-bold mb-4">Vidéos existantes ({subjects[selectedSubj].videos.length})</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="glass-card p-8">
+                    <h3 className="text-2xl font-bold mb-6 font-['Outfit']">Vidéos existantes ({subjects[selectedSubj].videos.length})</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                       {subjects[selectedSubj].videos.map((v) => (
-                        <div key={v.id} className="flex gap-3 p-3 bg-[rgba(15,17,26,0.5)] rounded-lg border border-[rgba(255,255,255,0.05)]">
-                          <img src={`https://img.youtube.com/vi/${v.id}/default.jpg`} alt="" className="w-24 h-auto rounded-md object-cover" />
-                          <div className="flex-1 min-w-0">
-                            <div className="font-semibold text-sm truncate">{v.title}</div>
-                            <div className="text-xs text-[#8b92b2]">{v.channel}</div>
+                        <div key={v.id} className="flex gap-4 p-4 bg-[rgba(17,24,39,0.5)] rounded-xl border border-[rgba(255,255,255,0.05)] hover:border-blue-500/30 transition-colors group">
+                          <img src={`https://img.youtube.com/vi/${v.id}/default.jpg`} alt="" className="w-28 h-auto rounded-lg object-cover" />
+                          <div className="flex-1 min-w-0 flex flex-col justify-center">
+                            <div className="font-bold text-[1.05rem] mb-1 truncate group-hover:text-blue-300 transition-colors">{v.title}</div>
+                            <div className="text-xs font-bold text-[#9ca3af] uppercase tracking-widest">{v.channel}</div>
                           </div>
-                          <div className="flex items-center gap-2 h-fit">
-                            <button onClick={() => handleEditVideo(v.id)} className="text-[#4facfe] hover:bg-[rgba(79,172,254,0.1)] p-2 rounded-md">
+                          <div className="flex flex-col justify-center gap-2 opacity-60 group-hover:opacity-100 transition-opacity">
+                            <button onClick={() => handleEditVideo(v.id)} className="text-indigo-400 hover:bg-indigo-400/10 p-2 rounded-lg transition-colors">
                               <Edit2 size={16} />
                             </button>
-                            <button onClick={() => deleteVideo(selectedSubj, v.id)} className="text-[#ff6584] hover:bg-[rgba(255,101,132,0.1)] p-2 rounded-md">
+                            <button onClick={() => deleteVideo(selectedSubj, v.id)} className="text-rose-400 hover:bg-rose-400/10 p-2 rounded-lg transition-colors">
                               <Trash2 size={16} />
                             </button>
                           </div>

@@ -7,58 +7,91 @@ export const MATIERES = {
     name: "Mathématiques", icon: "🧮", color: "#f7971e",
     fiches: [
       { title: "Les nombres et calculs", niveau: "Fondamental", content: `
-        <h3>Les fractions</h3>
-        <p>Une fraction représente une partie d'un tout. Elle est composée d'un numérateur (en haut) et d'un dénominateur (en bas).</p>
-        <div class="formula">a/b × c/d = (a×c)/(b×d)</div>
-        <p>Pour additionner deux fractions, on les met au même dénominateur.</p>
-        <h3>Les puissances</h3>
-        <p>a<sup>n</sup> signifie a multiplié par lui-même n fois.</p>
-        <div class="formula">a^n × a^m = a^(n+m)</div>
-        <ul>
-          <li>a⁰ = 1 (pour tout a ≠ 0)</li>
-          <li>a¹ = a</li>
-          <li>(a^n)^m = a^(n×m)</li>
-        </ul>
-        <h3>Les racines carrées</h3>
-        <div class="formula">√(a×b) = √a × √b</div>
-        <p>La racine carrée de 4 est 2 car 2² = 4.</p>
+### Les fractions
+Une fraction représente une partie d'un tout. Elle est composée d'un numérateur (en haut) et d'un dénominateur (en bas).
+
+\`\`\`math
+a/b × c/d = (a×c)/(b×d)
+\`\`\`
+
+Pour additionner deux fractions, on les met au même dénominateur.
+
+### Les puissances
+a^n signifie a multiplié par lui-même n fois.
+
+\`\`\`math
+a^n × a^m = a^(n+m)
+\`\`\`
+
+- a^0 = 1 (pour tout a ≠ 0)
+- a^1 = a
+- (a^n)^m = a^(n×m)
+
+### Les racines carrées
+\`\`\`math
+√(a×b) = √a × √b
+\`\`\`
+
+La racine carrée de 4 est 2 car 2² = 4.
       `},
       { title: "Algèbre et équations", niveau: "Essentiel", content: `
-        <h3>Développer et factoriser</h3>
-        <p>Développer consiste à supprimer les parenthèses. Factoriser est l'opération inverse.</p>
-        <div class="formula">(a+b)² = a² + 2ab + b²</div>
-        <div class="formula">(a-b)² = a² - 2ab + b²</div>
-        <div class="formula">(a+b)(a-b) = a² - b²</div>
-        <h3>Résoudre une équation du 1er degré</h3>
-        <p>Le but est d'isoler l'inconnue x d'un côté de l'équation.</p>
-        <div class="formula">ax + b = c → x = (c-b)/a</div>
-        <h3>Systèmes d'équations</h3>
-        <p>Méthode par substitution ou par combinaison linéaire.</p>
+### Développer et factoriser
+Développer consiste à supprimer les parenthèses. Factoriser est l'opération inverse.
+
+\`\`\`math
+(a+b)² = a² + 2ab + b²
+(a-b)² = a² - 2ab + b²
+(a+b)(a-b) = a² - b²
+\`\`\`
+
+### Résoudre une équation du 1er degré
+Le but est d'isoler l'inconnue x d'un côté de l'équation.
+
+\`\`\`math
+ax + b = c  ->  x = (c-b)/a
+\`\`\`
+
+### Systèmes d'équations
+Méthode par substitution ou par combinaison linéaire.
       `},
       { title: "Géométrie", niveau: "Essentiel", content: `
-        <h3>Théorème de Pythagore</h3>
-        <p>Dans un triangle rectangle, le carré de l'hypoténuse est égal à la somme des carrés des deux autres côtés.</p>
-        <div class="formula">a² + b² = c² (c = hypoténuse)</div>
-        <h3>Théorème de Thalès</h3>
-        <p>Si deux droites sont parallèles, elles coupent deux sécantes proportionnellement.</p>
-        <div class="formula">AB/AE = AC/AF = BC/EF</div>
-        <h3>Trigonométrie</h3>
-        <div class="formula">cos(A) = adjacent/hypoténuse</div>
-        <div class="formula">sin(A) = opposé/hypoténuse</div>
-        <div class="formula">tan(A) = opposé/adjacent</div>
+### Théorème de Pythagore
+Dans un triangle rectangle, le carré de l'hypoténuse est égal à la somme des carrés des deux autres côtés.
+
+\`\`\`math
+a² + b² = c² (c = hypoténuse)
+\`\`\`
+
+### Théorème de Thalès
+Si deux droites sont parallèles, elles coupent deux sécantes proportionnellement.
+
+\`\`\`math
+AB/AE = AC/AF = BC/EF
+\`\`\`
+
+### Trigonométrie
+\`\`\`math
+cos(A) = adjacent/hypoténuse
+sin(A) = opposé/hypoténuse
+tan(A) = opposé/adjacent
+\`\`\`
       `},
       { title: "Statistiques et probabilités", niveau: "Maîtrise", content: `
-        <h3>Moyenne, médiane, mode</h3>
-        <p>La <b>moyenne</b> est la somme des valeurs divisée par leur nombre.</p>
-        <p>La <b>médiane</b> est la valeur du milieu d'une série ordonnée.</p>
-        <p>Le <b>mode</b> est la valeur la plus fréquente.</p>
-        <h3>Probabilités</h3>
-        <div class="formula">P(A) = nombre de cas favorables / nombre de cas possibles</div>
-        <ul>
-          <li>0 ≤ P(A) ≤ 1</li>
-          <li>P(A) + P(Ā) = 1</li>
-          <li>P(impossible) = 0, P(certain) = 1</li>
-        </ul>
+### Moyenne, médiane, mode
+La **moyenne** est la somme des valeurs divisée par leur nombre.
+
+La **médiane** est la valeur du milieu d'une série ordonnée.
+
+Le **mode** est la valeur la plus fréquente.
+
+### Probabilités
+\`\`\`math
+P(A) = nombre de cas favorables / nombre de cas possibles
+\`\`\`
+
+- 0 ≤ P(A) ≤ 1
+- P(A) + P(Ā) = 1
+- P(impossible) = 0, P(certain) = 1
       `}
     ],
     qcm: [
@@ -78,56 +111,58 @@ export const MATIERES = {
     name: "Français", icon: "📖", color: "#ee0979",
     fiches: [
       { title: "Grammaire – Les propositions", niveau: "Fondamental", content: `
-        <h3>Types de propositions</h3>
-        <p>Une <b>proposition indépendante</b> ne dépend d'aucune autre et n'en commande aucune.</p>
-        <p>Une <b>proposition principale</b> commande une ou plusieurs subordonnées.</p>
-        <p>Une <b>proposition subordonnée</b> dépend de la principale.</p>
-        <h3>Les subordonnées relatives</h3>
-        <p>Elles complètent un nom (antécédent) et sont introduites par un pronom relatif : qui, que, dont, où, lequel...</p>
-        <h3>Les subordonnées conjonctives</h3>
-        <p>Introduites par que, quand, parce que, si, bien que, pour que...</p>
+### Types de propositions
+Une **proposition indépendante** ne dépend d'aucune autre et n'en commande aucune.
+
+Une **proposition principale** commande une ou plusieurs subordonnées.
+
+Une **proposition subordonnée** dépend de la principale.
+
+### Les subordonnées relatives
+Elles complètent un nom (antécédent) et sont introduites par un pronom relatif : qui, que, dont, où, lequel...
+
+### Les subordonnées conjonctives
+Introduites par que, quand, parce que, si, bien que, pour que...
       `},
       { title: "Figures de style", niveau: "Essentiel", content: `
-        <h3>Figures d'analogie</h3>
-        <ul>
-          <li><b>Métaphore</b> : comparaison sans outil comparatif (« la vie est un long fleuve »)</li>
-          <li><b>Comparaison</b> : rapprochement avec outil (comme, tel, pareil à...)</li>
-          <li><b>Personnification</b> : attributs humains à un objet/animal</li>
-        </ul>
-        <h3>Figures d'opposition</h3>
-        <ul>
-          <li><b>Antithèse</b> : opposition de deux idées</li>
-          <li><b>Oxymore</b> : alliance de deux termes contraires (« obscure clarté »)</li>
-        </ul>
-        <h3>Figures d'insistance</h3>
-        <ul>
-          <li><b>Anaphore</b> : répétition en début de phrase</li>
-          <li><b>Gradation</b> : progression des termes</li>
-          <li><b>Hyperbole</b> : exagération volontaire</li>
-        </ul>
+### Figures d'analogie
+- **Métaphore** : comparaison sans outil comparatif (« la vie est un long fleuve »)
+- **Comparaison** : rapprochement avec outil (comme, tel, pareil à...)
+- **Personnification** : attributs humains à un objet/animal
+
+### Figures d'opposition
+- **Antithèse** : opposition de deux idées
+- **Oxymore** : alliance de deux termes contraires (« obscure clarté »)
+
+### Figures d'insistance
+- **Anaphore** : répétition en début de phrase
+- **Gradation** : progression des termes
+- **Hyperbole** : exagération volontaire
       `},
       { title: "Méthodologie – La dissertation", niveau: "Maîtrise", content: `
-        <h3>Structure d'une dissertation</h3>
-        <ul>
-          <li><b>Introduction</b> : accroche, présentation du sujet, problématique, annonce du plan</li>
-          <li><b>Développement</b> : 2 ou 3 parties avec arguments et exemples</li>
-          <li><b>Conclusion</b> : bilan, réponse à la problématique, ouverture</li>
-        </ul>
-        <h3>Les connecteurs logiques</h3>
-        <p><b>Addition</b> : de plus, en outre, par ailleurs</p>
-        <p><b>Opposition</b> : cependant, néanmoins, or, mais</p>
-        <p><b>Cause</b> : car, parce que, en effet</p>
-        <p><b>Conséquence</b> : donc, ainsi, c'est pourquoi</p>
+### Structure d'une dissertation
+- **Introduction** : accroche, présentation du sujet, problématique, annonce du plan
+- **Développement** : 2 ou 3 parties avec arguments et exemples
+- **Conclusion** : bilan, réponse à la problématique, ouverture
+
+### Les connecteurs logiques
+**Addition** : de plus, en outre, par ailleurs
+**Opposition** : cependant, néanmoins, or, mais
+**Cause** : car, parce que, en effet
+**Conséquence** : donc, ainsi, c'est pourquoi
       `},
       { title: "Les mouvements littéraires", niveau: "Culture", content: `
-        <h3>Le Classicisme (XVIIe)</h3>
-        <p>Recherche de la raison, de l'ordre, de l'équilibre. Auteurs : Molière, Racine, La Fontaine.</p>
-        <h3>Le Romantisme (XIXe)</h3>
-        <p>Valorisation des sentiments, de la nature, du moi. Auteurs : Hugo, Lamartine, Musset.</p>
-        <h3>Le Réalisme (XIXe)</h3>
-        <p>Représentation fidèle de la réalité sociale. Auteurs : Balzac, Flaubert, Zola.</p>
-        <h3>Le Surréalisme (XXe)</h3>
-        <p>Libération de l'inconscient, écriture automatique. Auteurs : Breton, Éluard, Aragon.</p>
+### Le Classicisme (XVIIe)
+Recherche de la raison, de l'ordre, de l'équilibre. Auteurs : Molière, Racine, La Fontaine.
+
+### Le Romantisme (XIXe)
+Valorisation des sentiments, de la nature, du moi. Auteurs : Hugo, Lamartine, Musset.
+
+### Le Réalisme (XIXe)
+Représentation fidèle de la réalité sociale. Auteurs : Balzac, Flaubert, Zola.
+
+### Le Surréalisme (XXe)
+Libération de l'inconscient, écriture automatique. Auteurs : Breton, Éluard, Aragon.
       `}
     ],
     qcm: [
@@ -147,55 +182,57 @@ export const MATIERES = {
     name: "Histoire-Géographie", icon: "🌍", color: "#4facfe",
     fiches: [
       { title: "La Première Guerre mondiale", niveau: "Fondamental", content: `
-        <h3>Les causes de la guerre</h3>
-        <ul>
-          <li>Crise des Balkans (assassinat de l'archiduc François-Ferdinand, juin 1914)</li>
-          <li>Système des alliances (Triple Alliance vs Triple Entente)</li>
-          <li>Rivalités coloniales et économiques entre puissances européennes</li>
-          <li>Montée des nationalismes</li>
-        </ul>
-        <h3>Chronologie</h3>
-        <p><b>1914</b> : Début de la guerre, guerre de mouvement, front de l'Ouest stabilisé</p>
-        <p><b>1916</b> : Batailles de Verdun et de la Somme (guerre de tranchées)</p>
-        <p><b>1917</b> : Entrée en guerre des États-Unis, révolution russe</p>
-        <p><b>1918</b> : Armistice du 11 novembre</p>
-        <h3>Conséquences</h3>
-        <p>18 millions de morts. Traité de Versailles (1919). Nouvelle carte de l'Europe.</p>
+### Les causes de la guerre
+- Crise des Balkans (assassinat de l'archiduc François-Ferdinand, juin 1914)
+- Système des alliances (Triple Alliance vs Triple Entente)
+- Rivalités coloniales et économiques entre puissances européennes
+- Montée des nationalismes
+
+### Chronologie
+**1914** : Début de la guerre, guerre de mouvement, front de l'Ouest stabilisé
+**1916** : Batailles de Verdun et de la Somme (guerre de tranchées)
+**1917** : Entrée en guerre des États-Unis, révolution russe
+**1918** : Armistice du 11 novembre
+
+### Conséquences
+18 millions de morts. Traité de Versailles (1919). Nouvelle carte de l'Europe.
       `},
       { title: "La Seconde Guerre mondiale", niveau: "Essentiel", content: `
-        <h3>Causes</h3>
-        <p>Montée des totalitarismes (nazisme, fascisme), crise économique de 1929, politique d'apaisement.</p>
-        <h3>Les grandes phases</h3>
-        <p><b>1939-1941</b> : Victoires allemandes en Europe</p>
-        <p><b>1941</b> : Attaque de l'URSS, entrée en guerre des USA (Pearl Harbor)</p>
-        <p><b>1942-1943</b> : Retournement (Stalingrad, Afrique du Nord)</p>
-        <p><b>1944-1945</b> : Libération (Débarquement 6 juin 1944)</p>
-        <h3>La Shoah</h3>
-        <p>Génocide des Juifs d'Europe par les nazis : 6 millions de victimes.</p>
+### Causes
+Montée des totalitarismes (nazisme, fascisme), crise économique de 1929, politique d'apaisement.
+
+### Les grandes phases
+**1939-1941** : Victoires allemandes en Europe
+**1941** : Attaque de l'URSS, entrée en guerre des USA (Pearl Harbor)
+**1942-1943** : Retournement (Stalingrad, Afrique du Nord)
+**1944-1945** : Libération (Débarquement 6 juin 1944)
+
+### La Shoah
+Génocide des Juifs d'Europe par les nazis : 6 millions de victimes.
       `},
       { title: "La mondialisation", niveau: "Géographie", content: `
-        <h3>Définition</h3>
-        <p>Processus d'intégration croissante des économies, cultures et sociétés à l'échelle mondiale.</p>
-        <h3>Les acteurs</h3>
-        <ul>
-          <li>Les FTN (Firmes Transnationales) : Apple, Toyota, Shell...</li>
-          <li>Les États et organisations internationales (ONU, FMI, OMC)</li>
-          <li>Les consommateurs et la société civile</li>
-        </ul>
-        <h3>Les espaces de la mondialisation</h3>
-        <p>Les métropoles mondiales (New York, Londres, Tokyo) concentrent la finance et les décisions.</p>
-        <p>Les façades maritimes (Asie orientale, Europe du Nord, côte Est américaine) dominent les échanges.</p>
+### Définition
+Processus d'intégration croissante des économies, cultures et sociétés à l'échelle mondiale.
+
+### Les acteurs
+- Les FTN (Firmes Transnationales) : Apple, Toyota, Shell...
+- Les États et organisations internationales (ONU, FMI, OMC)
+- Les consommateurs et la société civile
+
+### Les espaces de la mondialisation
+Les métropoles mondiales (New York, Londres, Tokyo) concentrent la finance et les décisions.
+
+Les façades maritimes (Asie orientale, Europe du Nord, côte Est américaine) dominent les échanges.
       `},
       { title: "La France sous la Ve République", niveau: "Institutions", content: `
-        <h3>Les institutions</h3>
-        <ul>
-          <li><b>Président de la République</b> : élu au suffrage universel direct pour 5 ans</li>
-          <li><b>Premier ministre</b> : nommé par le Président</li>
-          <li><b>Parlement</b> : Assemblée nationale + Sénat</li>
-          <li><b>Conseil constitutionnel</b> : vérifie la conformité des lois</li>
-        </ul>
-        <h3>Naissance de la Ve République</h3>
-        <p>Fondée en 1958 par Charles de Gaulle pour répondre à la crise algérienne et à l'instabilité politique de la IVe République.</p>
+### Les institutions
+- **Président de la République** : élu au suffrage universel direct pour 5 ans
+- **Premier ministre** : nommé par le Président
+- **Parlement** : Assemblée nationale + Sénat
+- **Conseil constitutionnel** : vérifie la conformité des lois
+
+### Naissance de la Ve République
+Fondée en 1958 par Charles de Gaulle pour répondre à la crise algérienne et à l'instabilité politique de la IVe République.
       `}
     ],
     qcm: [
@@ -215,51 +252,54 @@ export const MATIERES = {
     name: "SVT", icon: "🧬", color: "#43e97b",
     fiches: [
       { title: "La cellule – Unité du vivant", niveau: "Fondamental", content: `
-        <h3>Structure de la cellule</h3>
-        <ul>
-          <li><b>Membrane plasmique</b> : délimite la cellule, contrôle les échanges</li>
-          <li><b>Cytoplasme</b> : milieu intérieur liquide</li>
-          <li><b>Noyau</b> : contient l'ADN (information génétique)</li>
-          <li><b>Mitochondries</b> : production d'énergie (respiration cellulaire)</li>
-          <li><b>Chloroplastes</b> : photosynthèse (cellules végétales seulement)</li>
-        </ul>
-        <h3>Cellule animale vs végétale</h3>
-        <p>La cellule végétale possède en plus : une paroi cellulaire, des chloroplastes et des vacuoles.</p>
+### Structure de la cellule
+- **Membrane plasmique** : délimite la cellule, contrôle les échanges
+- **Cytoplasme** : milieu intérieur liquide
+- **Noyau** : contient l'ADN (information génétique)
+- **Mitochondries** : production d'énergie (respiration cellulaire)
+- **Chloroplastes** : photosynthèse (cellules végétales seulement)
+
+### Cellule animale vs végétale
+La cellule végétale possède en plus : une paroi cellulaire, des chloroplastes et des vacuoles.
       `},
       { title: "La génétique et l'ADN", niveau: "Essentiel", content: `
-        <h3>L'ADN</h3>
-        <p>L'ADN (Acide DésoxyriboNucléique) est la molécule qui porte l'information génétique. Il est organisé en chromosomes dans le noyau.</p>
-        <h3>Les chromosomes</h3>
-        <p>Les cellules humaines contiennent 46 chromosomes (23 paires). Les gamètes (ovules, spermatozoïdes) en contiennent 23.</p>
-        <h3>Gène et allèles</h3>
-        <p>Un <b>gène</b> est une portion d'ADN codant pour une protéine.</p>
-        <p>Un <b>allèle</b> est une version d'un gène (ex : allèle yeux bleus / yeux marrons).</p>
-        <h3>Mutations</h3>
-        <p>Modification de la séquence d'ADN pouvant être héritée ou acquise.</p>
+### L'ADN
+L'ADN (Acide DésoxyriboNucléique) est la molécule qui porte l'information génétique. Il est organisé en chromosomes dans le noyau.
+
+### Les chromosomes
+Les cellules humaines contiennent 46 chromosomes (23 paires). Les gamètes (ovules, spermatozoïdes) en contiennent 23.
+
+### Gène et allèles
+Un **gène** est une portion d'ADN codant pour une protéine.
+
+Un **allèle** est une version d'un gène (ex : allèle yeux bleus / yeux marrons).
+
+### Mutations
+Modification de la séquence d'ADN pouvant être héritée ou acquise.
       `},
       { title: "La nutrition et la digestion", niveau: "Corps humain", content: `
-        <h3>Les nutriments essentiels</h3>
-        <ul>
-          <li><b>Glucides</b> : énergie rapide (pain, sucre, fruits)</li>
-          <li><b>Lipides</b> : réserves d'énergie (huile, beurre)</li>
-          <li><b>Protéines</b> : construction des cellules (viande, œufs, légumineuses)</li>
-          <li><b>Vitamines et minéraux</b> : régulation du métabolisme</li>
-        </ul>
-        <h3>La digestion</h3>
-        <p>Bouche → Œsophage → Estomac → Intestin grêle (absorption) → Gros intestin → Rectum</p>
-        <p>Les enzymes digestives décomposent les nutriments pour les rendre assimilables.</p>
+### Les nutriments essentiels
+- **Glucides** : énergie rapide (pain, sucre, fruits)
+- **Lipides** : réserves d'énergie (huile, beurre)
+- **Protéines** : construction des cellules (viande, œufs, légumineuses)
+- **Vitamines et minéraux** : régulation du métabolisme
+
+### La digestion
+Bouche -> Œsophage -> Estomac -> Intestin grêle (absorption) -> Gros intestin -> Rectum
+
+Les enzymes digestives décomposent les nutriments pour les rendre assimilables.
       `},
       { title: "L'évolution des êtres vivants", niveau: "Évolution", content: `
-        <h3>La théorie de l'évolution (Darwin)</h3>
-        <p>Les espèces évoluent au fil du temps par <b>sélection naturelle</b> : les individus les mieux adaptés à leur environnement survivent et se reproduisent.</p>
-        <h3>Les preuves de l'évolution</h3>
-        <ul>
-          <li>Fossiles montrant des formes intermédiaires</li>
-          <li>Similitudes anatomiques (membres homologues)</li>
-          <li>Comparaisons génétiques (ADN)</li>
-        </ul>
-        <h3>La classification du vivant</h3>
-        <p>Les êtres vivants sont classés selon leurs caractères partagés : Règne → Embranchement → Classe → Ordre → Famille → Genre → Espèce</p>
+### La théorie de l'évolution (Darwin)
+Les espèces évoluent au fil du temps par **sélection naturelle** : les individus les mieux adaptés à leur environnement survivent et se reproduisent.
+
+### Les preuves de l'évolution
+- Fossiles montrant des formes intermédiaires
+- Similitudes anatomiques (membres homologues)
+- Comparaisons génétiques (ADN)
+
+### La classification du vivant
+Les êtres vivants sont classés selon leurs caractères partagés : Règne -> Embranchement -> Classe -> Ordre -> Famille -> Genre -> Espèce
       `}
     ],
     qcm: [
@@ -279,50 +319,64 @@ export const MATIERES = {
     name: "Physique-Chimie", icon: "⚗️", color: "#a18cd1",
     fiches: [
       { title: "Les atomes et la matière", niveau: "Fondamental", content: `
-        <h3>Structure de l'atome</h3>
-        <ul>
-          <li><b>Noyau</b> : protons (+) et neutrons (neutres)</li>
-          <li><b>Électrons</b> (-) : en orbite autour du noyau</li>
-          <li>Nombre de protons = numéro atomique Z</li>
-        </ul>
-        <h3>Les ions</h3>
-        <p>Un <b>cation</b> est un ion positif (perd des électrons). Un <b>anion</b> est un ion négatif (gagne des électrons).</p>
-        <h3>Tableau périodique</h3>
-        <p>Les éléments sont classés par numéro atomique croissant. Les propriétés chimiques se répètent périodiquement.</p>
+### Structure de l'atome
+- **Noyau** : protons (+) et neutrons (neutres)
+- **Électrons** (-) : en orbite autour du noyau
+- Nombre de protons = numéro atomique Z
+
+### Les ions
+Un **cation** est un ion positif (perd des électrons). Un **anion** est un ion négatif (gagne des électrons).
+
+### Tableau périodique
+Les éléments sont classés par numéro atomique croissant. Les propriétés chimiques se répètent périodiquement.
       `},
       { title: "Les réactions chimiques", niveau: "Essentiel", content: `
-        <h3>Équation chimique</h3>
-        <p>Une réaction chimique transforme des réactifs en produits. L'équation doit être équilibrée (conservation de la matière).</p>
-        <div class="formula">2H₂ + O₂ → 2H₂O</div>
-        <h3>Conservation de la masse</h3>
-        <p>La masse des réactifs = la masse des produits (loi de Lavoisier).</p>
-        <h3>Types de réactions</h3>
-        <ul>
-          <li>Combustion (réaction avec O₂)</li>
-          <li>Oxydoréduction</li>
-          <li>Réaction acide-base</li>
-        </ul>
+### Équation chimique
+Une réaction chimique transforme des réactifs en produits. L'équation doit être équilibrée (conservation de la matière).
+
+\`\`\`math
+2H₂ + O₂ -> 2H₂O
+\`\`\`
+
+### Conservation de la masse
+La masse des réactifs = la masse des produits (loi de Lavoisier).
+
+### Types de réactions
+- Combustion (réaction avec O₂)
+- Oxydoréduction
+- Réaction acide-base
       `},
       { title: "L'électricité", niveau: "Physique", content: `
-        <h3>Circuit électrique</h3>
-        <p>Un circuit doit être fermé pour que le courant circule.</p>
-        <h3>Loi d'Ohm</h3>
-        <div class="formula">U = R × I</div>
-        <p>U (tension en V), R (résistance en Ω), I (intensité en A)</p>
-        <h3>Circuits en série vs parallèle</h3>
-        <p><b>Série</b> : même intensité, tensions additives</p>
-        <p><b>Parallèle</b> : même tension, intensités additives</p>
-        <h3>Puissance électrique</h3>
-        <div class="formula">P = U × I (en watts)</div>
+### Circuit électrique
+Un circuit doit être fermé pour que le courant circule.
+
+### Loi d'Ohm
+\`\`\`math
+U = R × I
+\`\`\`
+U (tension en V), R (résistance en Ω), I (intensité en A)
+
+### Circuits en série vs parallèle
+**Série** : même intensité, tensions additives
+
+**Parallèle** : même tension, intensités additives
+
+### Puissance électrique
+\`\`\`math
+P = U × I (en watts)
+\`\`\`
       `},
       { title: "La lumière et l'optique", niveau: "Physique", content: `
-        <h3>Propagation de la lumière</h3>
-        <p>La lumière se propage en ligne droite dans un milieu homogène à 300 000 km/s dans le vide.</p>
-        <h3>Réflexion et réfraction</h3>
-        <p>La lumière se réfléchit sur une surface (angle d'incidence = angle de réflexion).</p>
-        <p>Elle se réfracte en changeant de milieu (loi de Snell-Descartes).</p>
-        <h3>Spectre de la lumière</h3>
-        <p>La lumière blanche est composée de toutes les couleurs de l'arc-en-ciel (rouge, orange, jaune, vert, bleu, indigo, violet).</p>
+### Propagation de la lumière
+La lumière se propage en ligne droite dans un milieu homogène à 300 000 km/s dans le vide.
+
+### Réflexion et réfraction
+La lumière se réfléchit sur une surface (angle d'incidence = angle de réflexion).
+
+Elle se réfracte en changeant de milieu (loi de Snell-Descartes).
+
+### Spectre de la lumière
+La lumière blanche est composée de toutes les couleurs de l'arc-en-ciel (rouge, orange, jaune, vert, bleu, indigo, violet).
       `}
     ],
     qcm: [
@@ -342,52 +396,73 @@ export const MATIERES = {
     name: "Anglais", icon: "🇬🇧", color: "#f093fb",
     fiches: [
       { title: "Les temps principaux", niveau: "Fondamental", content: `
-        <h3>Present Simple</h3>
-        <p>Actions habituelles ou faits permanents. Sujet + verbe (+ s à la 3e pers.)</p>
-        <div class="formula">She works every day.</div>
-        <h3>Present Continuous</h3>
-        <p>Action en cours au moment de parler. Sujet + am/is/are + V-ing</p>
-        <div class="formula">She is working right now.</div>
-        <h3>Preterit (Past Simple)</h3>
-        <p>Action terminée dans le passé. Verbes réguliers : + ed / Verbes irréguliers : forme 2</p>
-        <div class="formula">She worked yesterday. / She went to school.</div>
-        <h3>Present Perfect</h3>
-        <p>Action passée avec lien avec le présent. Sujet + have/has + participe passé</p>
-        <div class="formula">She has worked here for 5 years.</div>
+### Present Simple
+Actions habituelles ou faits permanents. Sujet + verbe (+ s à la 3e pers.)
+
+\`\`\`math
+She works every day.
+\`\`\`
+
+### Present Continuous
+Action en cours au moment de parler. Sujet + am/is/are + V-ing
+
+\`\`\`math
+She is working right now.
+\`\`\`
+
+### Preterit (Past Simple)
+Action terminée dans le passé. Verbes réguliers : + ed / Verbes irréguliers : forme 2
+
+\`\`\`math
+She worked yesterday. / She went to school.
+\`\`\`
+
+### Present Perfect
+Action passée avec lien avec le présent. Sujet + have/has + participe passé
+
+\`\`\`math
+She has worked here for 5 years.
+\`\`\`
       `},
       { title: "Les modaux", niveau: "Essentiel", content: `
-        <h3>CAN / COULD</h3>
-        <p>Capacité ou permission : I can swim. / Could you help me?</p>
-        <h3>MUST / HAVE TO</h3>
-        <p>Obligation : You must wear a seatbelt. / I have to study.</p>
-        <h3>SHOULD</h3>
-        <p>Conseil : You should sleep more.</p>
-        <h3>WILL / WOULD</h3>
-        <p>Futur et conditionnel : It will rain. / I would like a coffee.</p>
-        <h3>MAY / MIGHT</h3>
-        <p>Possibilité : It may rain. / He might come.</p>
+### CAN / COULD
+Capacité ou permission : I can swim. / Could you help me?
+
+### MUST / HAVE TO
+Obligation : You must wear a seatbelt. / I have to study.
+
+### SHOULD
+Conseil : You should sleep more.
+
+### WILL / WOULD
+Futur et conditionnel : It will rain. / I would like a coffee.
+
+### MAY / MIGHT
+Possibilité : It may rain. / He might come.
       `},
       { title: "Le vocabulaire thématique DNB", niveau: "Vocabulaire", content: `
-        <h3>L'environnement</h3>
-        <p>climate change, global warming, renewable energy, pollution, deforestation, sustainable, greenhouse gas</p>
-        <h3>La société</h3>
-        <p>immigration, equality, human rights, poverty, democracy, discrimination, freedom</p>
-        <h3>La technologie</h3>
-        <p>artificial intelligence, social media, smartphone, internet, innovation, data, digital</p>
-        <h3>La santé</h3>
-        <p>healthcare, mental health, epidemic, vaccine, disease, well-being, hospital</p>
+### L'environnement
+climate change, global warming, renewable energy, pollution, deforestation, sustainable, greenhouse gas
+
+### La société
+immigration, equality, human rights, poverty, democracy, discrimination, freedom
+
+### La technologie
+artificial intelligence, social media, smartphone, internet, innovation, data, digital
+
+### La santé
+healthcare, mental health, epidemic, vaccine, disease, well-being, hospital
       `},
       { title: "Méthodologie – Compréhension écrite", niveau: "Méthode", content: `
-        <h3>Étapes pour comprendre un texte</h3>
-        <ul>
-          <li>1. Lire les questions avant le texte</li>
-          <li>2. Identifier le type de document (article, lettre, dialogue...)</li>
-          <li>3. Repérer les mots-clés</li>
-          <li>4. Inférer le sens des mots inconnus par le contexte</li>
-          <li>5. Répondre aux questions en cherchant des preuves dans le texte</li>
-        </ul>
-        <h3>Mots de liaison utiles</h3>
-        <p>However, Nevertheless, On the other hand, Therefore, Moreover, In addition, Although, Despite</p>
+### Étapes pour comprendre un texte
+- 1. Lire les questions avant le texte
+- 2. Identifier le type de document (article, lettre, dialogue...)
+- 3. Repérer les mots-clés
+- 4. Inférer le sens des mots inconnus par le contexte
+- 5. Répondre aux questions en cherchant des preuves dans le texte
+
+### Mots de liaison utiles
+However, Nevertheless, On the other hand, Therefore, Moreover, In addition, Although, Despite
       `}
     ],
     qcm: [

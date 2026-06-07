@@ -14,8 +14,8 @@ const Login = () => {
 
   useEffect(() => {
     gsap.fromTo(boxRef.current, 
-      { opacity: 0, scale: 0.9, y: 30 }, 
-      { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: 'back.out(1.5)' }
+      { opacity: 0, scale: 0.95, y: 30 }, 
+      { opacity: 1, scale: 1, y: 0, duration: 0.8, ease: 'back.out(1.2)' }
     );
   }, []);
 
@@ -32,18 +32,19 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#0b0c10] relative overflow-hidden text-[#e8eaf0]">
+    <div className="min-h-screen flex items-center justify-center bg-[#030712] relative overflow-hidden text-[#f9fafb]">
       {/* Background Orbs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#6c63ff] rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#ff6584] rounded-full mix-blend-multiply filter blur-[128px] opacity-20 animate-blob animation-delay-2000"></div>
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-500 rounded-full mix-blend-screen filter blur-[128px] opacity-20 animate-blob"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-pink-500 rounded-full mix-blend-screen filter blur-[128px] opacity-20 animate-blob" style={{ animationDelay: '2s' }}></div>
 
       <div ref={boxRef} className="glass-panel p-10 w-full max-w-md relative z-10 mx-4">
         <div className="text-center mb-8">
-          <div className="w-16 h-16 mx-auto bg-gradient-to-br from-[#6c63ff] to-[#ff6584] rounded-2xl flex items-center justify-center mb-4 shadow-[0_10px_40px_rgba(108,99,255,0.4)]">
-            <GraduationCap size={32} color="white" />
+          <div className="w-16 h-16 mx-auto bg-gradient-to-br from-indigo-500 to-pink-500 rounded-2xl flex items-center justify-center mb-5 shadow-[0_10px_40px_rgba(99,102,241,0.4)] relative overflow-hidden group">
+            <div className="absolute inset-0 bg-white/20 animate-pulse-glow mix-blend-overlay"></div>
+            <GraduationCap size={32} color="white" className="relative z-10 group-hover:scale-110 transition-transform" />
           </div>
-          <h1 className="text-3xl font-extrabold tracking-tight">Prof Esteban</h1>
-          <p className="text-[#8b92b2] mt-2 text-sm">Plateforme de révision premium</p>
+          <h1 className="text-4xl font-extrabold tracking-tight font-['Outfit'] text-gradient">Prof Esteban</h1>
+          <p className="text-[#9ca3af] mt-2 text-sm font-medium">Plateforme de révision premium</p>
         </div>
 
         <form onSubmit={handleSubmit}>
@@ -58,7 +59,7 @@ const Login = () => {
             />
           </div>
           
-          <div className="input-group mb-6">
+          <div className="input-group mb-8">
             <label>Mot de passe</label>
             <input 
               type="password" 
@@ -69,18 +70,16 @@ const Login = () => {
             />
           </div>
 
-          <button type="submit" className="btn-primary w-full py-4 text-base tracking-wide">
-            Se connecter →
+          <button type="submit" className="btn-primary w-full py-4 text-base tracking-wide flex items-center justify-center gap-2 group">
+            Se connecter <span className="group-hover:translate-x-1 transition-transform">→</span>
           </button>
 
           {error && (
-            <div className="mt-4 p-3 bg-[rgba(255,101,132,0.1)] border border-[rgba(255,101,132,0.3)] rounded-xl text-center text-[#ff6584] text-sm font-medium">
+            <div className="mt-5 p-4 bg-rose-500/10 border border-rose-500/30 rounded-xl text-center text-rose-400 text-sm font-medium animate-pulse">
               ❌ Identifiant ou mot de passe incorrect
             </div>
           )}
         </form>
-
-
       </div>
     </div>
   );
