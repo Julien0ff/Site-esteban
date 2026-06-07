@@ -25,6 +25,8 @@ const ProtectedRoute = ({ children, requireAdmin }) => {
   return children;
 };
 
+import ForcePasswordChange from './components/ForcePasswordChange';
+
 const AppRoutes = () => {
   const { user } = useAuth();
 
@@ -32,7 +34,7 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/login" element={!user ? <Login /> : <Navigate to="/" replace />} />
       
-      <Route path="/" element={<ProtectedRoute><Layout /></ProtectedRoute>}>
+      <Route path="/" element={<ProtectedRoute><ForcePasswordChange><Layout /></ForcePasswordChange></ProtectedRoute>}>
         <Route index element={<Dashboard />} />
         <Route path="matieres" element={<SubjectList />} />
         <Route path="matieres/:id" element={<SubjectDetail />} />

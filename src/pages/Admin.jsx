@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../AuthContext';
 import { useData } from '../DataContext';
-import { Trash2, UserPlus, ShieldAlert, Database, BookOpen, PlusCircle, Video, Brain, Edit2 } from 'lucide-react';
+import { Trash2, UserPlus, ShieldAlert, Database, BookOpen, PlusCircle, Video, Brain, Edit2, Copy, Check } from 'lucide-react';
 
 const Admin = () => {
   const { usersDb, addUser, updateUser, deleteUser, user } = useAuth();
@@ -13,9 +13,12 @@ const Admin = () => {
   const [name, setName] = useState('');
   const [login, setLogin] = useState('');
   const [pw, setPw] = useState('');
+  const [generateTempPw, setGenerateTempPw] = useState(false);
   const [userError, setUserError] = useState('');
   const [userSuccess, setUserSuccess] = useState('');
   const [editingUser, setEditingUser] = useState(null);
+  const [newCredentials, setNewCredentials] = useState(null);
+  const [copied, setCopied] = useState(false);
 
   // Content state
   const [selectedSubj, setSelectedSubj] = useState('maths');
@@ -46,35 +49,57 @@ const Admin = () => {
   const [videoChannel, setVideoChannel] = useState('');
   const [videoId, setVideoId] = useState('');
 
+  const generateRandomPassword = () => {
+    const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*";
+    let pass = "";
+    for(let i=0; i<10; i++) pass += chars.charAt(Math.floor(Math.random() * chars.length));
+    return pass;
+  };
+
   const handleAddUser = async (e) => {
     e.preventDefault();
     setUserError('');
     setUserSuccess('');
     
-    if (!name || !login || !pw) {
+    let finalPw = pw;
+    if (generateTempPw) {
+      finalPw = generateRandomPassword();
+    }
+    
+    if (!name || !login || !finalPw) {
       setUserError('Tous les champs sont obligatoires.');
       return;
     }
     
     if (editingUser) {
       const role = usersDb.find(u => u.login === editingUser)?.role || 'student';
-      const updated = await updateUser(editingUser, { name, login, pw, role });
+      const updated = await updateUser(editingUser, { name, login, pw: finalPw, role, needsPasswordChange: generateTempPw });
       if (updated) {
-        setUserSuccess(`Le profil de ${name} a été modifié avec succès.`);
+        if (generateTempPw) {
+          setNewCredentials({ name, login, pw: finalPw });
+        } else {
+          setUserSuccess(`Le profil de ${name} a été modifié avec succès.`);
+        }
         setName('');
         setLogin('');
         setPw('');
+        setGenerateTempPw(false);
         setEditingUser(null);
       } else {
         setUserError('Cet identifiant existe déjà pour un autre utilisateur.');
       }
     } else {
-      const added = await addUser({ name, login, pw, role: 'student' });
+      const added = await addUser({ name, login, pw: finalPw, role: 'student', needsPasswordChange: generateTempPw });
       if (added) {
-        setUserSuccess(`L'élève ${name} a été ajouté avec succès.`);
+        if (generateTempPw) {
+          setNewCredentials({ name, login, pw: finalPw });
+        } else {
+          setUserSuccess(`L'élève ${name} a été ajouté avec succès.`);
+        }
         setName('');
         setLogin('');
         setPw('');
+        setGenerateTempPw(false);
       } else {
         setUserError('Cet identifiant existe déjà.');
       }
@@ -85,6 +110,7 @@ const Admin = () => {
     setName(u.name);
     setLogin(u.login);
     setPw(u.pw);
+    setGenerateTempPw(false);
     setEditingUser(u.login);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -94,6 +120,18 @@ const Admin = () => {
     setName('');
     setLogin('');
     setPw('');
+    setGenerateTempPw(false);
+  };
+
+  const copyCredentials = () => {
+    navigator.clipboard.writeText(`Identifiant: ${newCredentials.login}\nMot de passe temporaire: ${newCredentials.pw}`);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const closeCredentialsModal = () => {
+    setNewCredentials(null);
+    setUserSuccess('Utilisateur créé/modifié avec succès.');
   };
 
   const showSuccess = (msg) => {
@@ -217,6 +255,39 @@ const Admin = () => {
 
   return (
     <div className="pb-20">
+      
+      {/* Pop-up Nouveaux Identifiants */}
+      {newCredentials && (
+        <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4 backdrop-blur-md">
+          <div className="glass-card p-8 max-w-md w-full bg-gradient-to-br from-[rgba(17,24,39,0.9)] to-pink-900/30 border-pink-500/30 shadow-[0_20px_60px_rgba(236,72,153,0.3)] text-center animate-in zoom-in-95 duration-300">
+            <h2 className="text-2xl font-bold mb-4 font-['Outfit'] text-white">Identifiants générés</h2>
+            <p className="text-[#9ca3af] text-sm mb-6">
+              Transmettez ces informations à l'élève. Il sera invité à changer ce mot de passe temporaire lors de sa première connexion.
+            </p>
+            
+            <div className="bg-[rgba(3,7,18,0.6)] border border-[rgba(255,255,255,0.05)] rounded-xl p-5 mb-6 text-left">
+              <div className="mb-3">
+                <span className="text-xs text-[#9ca3af] uppercase tracking-wider font-bold">Identifiant :</span>
+                <div className="text-lg font-mono text-white mt-1">{newCredentials.login}</div>
+              </div>
+              <div>
+                <span className="text-xs text-[#9ca3af] uppercase tracking-wider font-bold">Mot de passe temporaire :</span>
+                <div className="text-lg font-mono text-pink-400 mt-1">{newCredentials.pw}</div>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <button onClick={copyCredentials} className="btn-primary flex-1 flex items-center justify-center gap-2">
+                {copied ? <><Check size={18} /> Copié !</> : <><Copy size={18} /> Copier</>}
+              </button>
+              <button onClick={closeCredentialsModal} className="btn-outline flex-1">
+                Fermer
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="mb-12 relative">
         <div className="absolute -top-10 -left-10 w-40 h-40 bg-pink-500 rounded-full mix-blend-screen filter blur-[80px] opacity-20"></div>
         <h1 className="text-4xl font-extrabold mb-3 flex items-center gap-4 font-['Outfit'] text-gradient">
@@ -256,28 +327,51 @@ const Admin = () => {
             {userError && <div className="mb-6 p-4 bg-rose-500/10 text-rose-400 border border-rose-500/30 rounded-xl font-medium animate-pulse">{userError}</div>}
             {userSuccess && <div className="mb-6 p-4 bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 rounded-xl font-medium">{userSuccess}</div>}
 
-            <form onSubmit={handleAddUser} className="grid grid-cols-1 md:grid-cols-4 gap-5 items-end">
-              <div className="input-group mb-0">
-                <label>Prénom Nom</label>
-                <input type="text" className="input-field py-3 px-5" value={name} onChange={e => setName(e.target.value)} />
+            <form onSubmit={handleAddUser}>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div className="input-group mb-0">
+                  <label>Prénom Nom</label>
+                  <input type="text" className="input-field py-3 px-5" value={name} onChange={e => setName(e.target.value)} />
+                </div>
+                <div className="input-group mb-0">
+                  <label>Identifiant</label>
+                  <input type="text" className="input-field py-3 px-5" value={login} onChange={e => setLogin(e.target.value)} />
+                </div>
+                <div className="input-group mb-0">
+                  <label>Mot de passe {generateTempPw && '(Désactivé)'}</label>
+                  <input 
+                    type="text" 
+                    className={`input-field py-3 px-5 ${generateTempPw ? 'opacity-50 cursor-not-allowed bg-[rgba(17,24,39,0.3)]' : ''}`} 
+                    value={generateTempPw ? '••••••••' : pw} 
+                    onChange={e => {
+                      setPw(e.target.value);
+                      if (editingUser && e.target.value === '') {
+                        setGenerateTempPw(true);
+                      }
+                    }} 
+                    disabled={generateTempPw}
+                  />
+                  <div className="mt-3 flex items-center gap-2">
+                    <input 
+                      type="checkbox" 
+                      id="genTemp" 
+                      className="w-4 h-4 accent-pink-500 rounded cursor-pointer"
+                      checked={generateTempPw} 
+                      onChange={(e) => setGenerateTempPw(e.target.checked)} 
+                    />
+                    <label htmlFor="genTemp" className="text-sm text-[#9ca3af] cursor-pointer">Générer un mot de passe temporaire</label>
+                  </div>
+                </div>
               </div>
-              <div className="input-group mb-0">
-                <label>Identifiant</label>
-                <input type="text" className="input-field py-3 px-5" value={login} onChange={e => setLogin(e.target.value)} />
-              </div>
-              <div className="input-group mb-0">
-                <label>Mot de passe</label>
-                <input type="text" className="input-field py-3 px-5" value={pw} onChange={e => setPw(e.target.value)} />
-              </div>
-              <div className="flex flex-col gap-3">
-                <button type="submit" className="btn-primary py-3 px-5 h-12 flex items-center justify-center bg-gradient-to-r from-pink-500 to-rose-500 shadow-[0_4px_15px_rgba(236,72,153,0.4)]">
-                  {editingUser ? 'Enregistrer' : 'Ajouter'}
-                </button>
+              <div className="mt-8 flex items-center justify-end gap-3 border-t border-[rgba(255,255,255,0.05)] pt-6">
                 {editingUser && (
-                  <button type="button" onClick={cancelEditUser} className="btn-outline py-2 px-5 h-10 flex items-center justify-center text-xs">
+                  <button type="button" onClick={cancelEditUser} className="btn-outline py-3 px-6 font-medium">
                     Annuler
                   </button>
                 )}
+                <button type="submit" className="btn-primary py-3 px-8 flex items-center justify-center bg-gradient-to-r from-pink-500 to-rose-500 shadow-[0_4px_15px_rgba(236,72,153,0.4)]">
+                  {editingUser ? 'Enregistrer les modifications' : 'Ajouter l\'élève'}
+                </button>
               </div>
             </form>
           </div>
@@ -305,7 +399,7 @@ const Admin = () => {
                         <span className="bg-[rgba(3,7,18,0.6)] px-3 py-1.5 rounded-md text-sm font-mono text-[#9ca3af] border border-[rgba(255,255,255,0.05)]">{u.login}</span>
                       </td>
                       <td className="p-5">
-                        <span className="bg-[rgba(3,7,18,0.6)] px-3 py-1.5 rounded-md text-sm font-mono text-[#9ca3af] border border-[rgba(255,255,255,0.05)]">{u.pw}</span>
+                        <span className="bg-[rgba(3,7,18,0.6)] px-3 py-1.5 rounded-md text-sm font-mono text-[#9ca3af] border border-[rgba(255,255,255,0.05)]">{u.needsPasswordChange ? 'Temporaire' : 'Définitif (Caché)'}</span>
                       </td>
                       <td className="p-5">
                         <span className={`badge ${u.role === 'admin' ? 'badge-admin' : 'badge-student'}`}>
