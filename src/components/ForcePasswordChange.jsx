@@ -1,13 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
 import { useAuth } from '../AuthContext';
 import gsap from 'gsap';
-import { ShieldAlert, CheckCircle } from 'lucide-react';
+import { ShieldAlert, CheckCircle, XCircle } from 'lucide-react';
 
 const ForcePasswordChange = ({ children }) => {
   const { user, updateUser } = useAuth();
   const [newPw, setNewPw] = useState('');
   const [confirmPw, setConfirmPw] = useState('');
-  const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const boxRef = useRef(null);
 
@@ -20,28 +19,19 @@ const ForcePasswordChange = ({ children }) => {
     }
   }, [user]);
 
-  const validatePassword = (pw) => {
-    if (pw.length < 8) return "Le mot de passe doit contenir au moins 8 caractères.";
-    if (!/[!@#$%^&*(),.?":{}|<>]/.test(pw)) return "Le mot de passe doit contenir au moins un caractère spécial.";
-    if (!/[A-Z]/.test(pw)) return "Le mot de passe doit contenir au moins une majuscule.";
-    if (!/[0-9]/.test(pw)) return "Le mot de passe doit contenir au moins un chiffre.";
-    return "";
-  };
+  const criteria = [
+    { label: "Au moins 8 caractères", valid: newPw.length >= 8 },
+    { label: "Une majuscule", valid: /[A-Z]/.test(newPw) },
+    { label: "Un chiffre", valid: /[0-9]/.test(newPw) },
+    { label: "Un caractère spécial (!@#...)", valid: /[!@#$%^&*(),.?":{}|<>]/.test(newPw) },
+    { label: "Mots de passe identiques", valid: newPw === confirmPw && confirmPw.length > 0 }
+  ];
+
+  const allValid = criteria.every(c => c.valid);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-    
-    if (newPw !== confirmPw) {
-      setError("Les mots de passe ne correspondent pas.");
-      return;
-    }
-    
-    const validationError = validatePassword(newPw);
-    if (validationError) {
-      setError(validationError);
-      return;
-    }
+    if (!allValid) return;
     
     setSuccess(true);
     setTimeout(async () => {
@@ -51,12 +41,12 @@ const ForcePasswordChange = ({ children }) => {
 
   if (user && user.needsPasswordChange) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#030712] relative overflow-hidden text-[#f9fafb]">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#030712] overflow-hidden text-[#f9fafb]">
         {/* Background Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-500 rounded-full mix-blend-screen filter blur-[128px] opacity-20 animate-blob"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-500 rounded-full mix-blend-screen filter blur-[128px] opacity-20 animate-blob" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-500 rounded-full mix-blend-screen filter blur-[128px] opacity-20 animate-blob pointer-events-none"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-500 rounded-full mix-blend-screen filter blur-[128px] opacity-20 animate-blob pointer-events-none" style={{ animationDelay: '2s' }}></div>
 
-        <div ref={boxRef} className="glass-panel p-10 w-full max-w-md relative z-10 mx-4">
+        <div ref={boxRef} className="glass-panel p-6 md:p-10 w-full max-w-md relative z-10 mx-4">
           <div className="text-center mb-8">
             <div className="w-16 h-16 mx-auto bg-gradient-to-br from-indigo-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-5 shadow-[0_10px_40px_rgba(99,102,241,0.4)]">
               <ShieldAlert size={32} color="white" />
@@ -74,38 +64,47 @@ const ForcePasswordChange = ({ children }) => {
                 <input 
                   type="password" 
                   className="input-field" 
-                  placeholder="8 car. min, 1 maj, 1 chiffre, 1 spécial"
                   value={newPw}
                   onChange={(e) => setNewPw(e.target.value)}
                 />
               </div>
               
-              <div className="input-group mb-8">
+              <div className="input-group mb-6">
                 <label>Confirmer le mot de passe</label>
                 <input 
                   type="password" 
                   className="input-field" 
-                  placeholder="Répétez le mot de passe"
                   value={confirmPw}
                   onChange={(e) => setConfirmPw(e.target.value)}
                 />
               </div>
 
-              <button type="submit" className="btn-primary w-full py-4 text-base tracking-wide flex items-center justify-center gap-2 group">
+              <div className="mb-8 space-y-2.5 bg-[rgba(17,24,39,0.5)] p-4 rounded-xl border border-[rgba(255,255,255,0.05)]">
+                {criteria.map((c, i) => (
+                  <div key={i} className="flex items-center gap-3 text-sm font-medium transition-colors">
+                    {c.valid ? (
+                      <CheckCircle size={16} className="text-emerald-400 shrink-0" />
+                    ) : (
+                      <div className="w-4 h-4 rounded-full border border-[#4b5563] shrink-0"></div>
+                    )}
+                    <span className={c.valid ? "text-[#e5e7eb]" : "text-[#6b7280]"}>{c.label}</span>
+                  </div>
+                ))}
+              </div>
+
+              <button 
+                type="submit" 
+                disabled={!allValid}
+                className={`w-full py-4 text-base tracking-wide flex items-center justify-center gap-2 rounded-xl font-bold transition-all duration-300 ${allValid ? 'bg-gradient-to-r from-indigo-500 to-emerald-500 text-white shadow-[0_4px_15px_rgba(99,102,241,0.4)] hover:scale-[1.02]' : 'bg-[rgba(255,255,255,0.05)] text-[#6b7280] cursor-not-allowed border border-[rgba(255,255,255,0.05)]'}`}
+              >
                 Enregistrer le mot de passe
               </button>
-
-              {error && (
-                <div className="mt-5 p-4 bg-rose-500/10 border border-rose-500/30 rounded-xl text-center text-rose-400 text-sm font-medium animate-pulse">
-                  ❌ {error}
-                </div>
-              )}
             </form>
           ) : (
             <div className="text-center py-6">
-              <CheckCircle size={48} className="text-emerald-400 mx-auto mb-4" />
-              <p className="text-lg font-bold text-emerald-400">Mot de passe enregistré !</p>
-              <p className="text-[#9ca3af] text-sm mt-2">Redirection en cours...</p>
+              <CheckCircle size={56} className="text-emerald-400 mx-auto mb-4 animate-in zoom-in duration-300" />
+              <p className="text-xl font-bold text-emerald-400">Mot de passe enregistré !</p>
+              <p className="text-[#9ca3af] text-sm mt-3">Connexion en cours...</p>
             </div>
           )}
         </div>

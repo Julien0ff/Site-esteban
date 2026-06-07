@@ -299,7 +299,7 @@ const Admin = () => {
         <p className="text-[#9ca3af] text-lg">Gérez les accès élèves et le contenu de la plateforme premium</p>
       </div>
 
-      <div className="flex gap-2 mb-10 bg-[rgba(17,24,39,0.5)] p-2 rounded-2xl border border-[rgba(255,255,255,0.05)] w-fit backdrop-blur-md relative z-10 shadow-lg">
+      <div className="flex flex-wrap gap-2 mb-8 md:mb-10 bg-[rgba(17,24,39,0.5)] p-2 rounded-2xl border border-[rgba(255,255,255,0.05)] w-fit backdrop-blur-md relative z-10 shadow-lg">
         <button 
           onClick={() => setActiveTab('users')}
           className={`flex items-center gap-3 px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300 ${activeTab === 'users' ? 'bg-pink-500 text-white shadow-[0_4px_20px_rgba(236,72,153,0.4)]' : 'text-[#9ca3af] hover:text-white hover:bg-[rgba(255,255,255,0.05)]'}`}
@@ -316,7 +316,7 @@ const Admin = () => {
 
       {activeTab === 'users' && (
         <div className="animate-in fade-in slide-in-from-bottom-4 relative z-10">
-          <div className="glass-card p-10 mb-10 bg-gradient-to-br from-[rgba(17,24,39,0.8)] to-[rgba(236,72,153,0.05)] border-pink-500/20">
+          <div className="glass-card p-6 md:p-10 mb-10 bg-gradient-to-br from-[rgba(17,24,39,0.8)] to-[rgba(236,72,153,0.05)] border-pink-500/20">
             <h3 className="text-2xl font-bold mb-8 flex items-center gap-3 font-['Outfit']">
               <div className="p-2 bg-pink-500/10 rounded-lg border border-pink-500/20">
                 <UserPlus size={20} className="text-pink-400" />
@@ -459,7 +459,7 @@ const Admin = () => {
             <div className="lg:col-span-3">
               <h3 className="text-lg font-bold mb-5 font-['Outfit'] uppercase tracking-widest text-[#9ca3af] text-sm">2. Gérer le contenu : <span className="text-white capitalize">{subjects[selectedSubj].name}</span></h3>
               
-              <div className="flex gap-2 mb-8 bg-[rgba(17,24,39,0.5)] p-2 rounded-2xl border border-[rgba(255,255,255,0.05)] w-fit shadow-lg backdrop-blur-md">
+              <div className="flex flex-wrap gap-2 mb-8 bg-[rgba(17,24,39,0.5)] p-2 rounded-2xl border border-[rgba(255,255,255,0.05)] w-fit shadow-lg backdrop-blur-md">
                 {[
                   { id: 'fiches', icon: <BookOpen size={18} />, label: 'Fiches Markdown' },
                   { id: 'qcm', icon: <Brain size={18} />, label: 'QCM' },
@@ -484,7 +484,7 @@ const Admin = () => {
               {/* TAB: FICHES */}
               {contentTab === 'fiches' && (
                 <div className="animate-in fade-in">
-                  <div className="glass-card p-10 border-indigo-500/20 bg-gradient-to-br from-[rgba(17,24,39,0.8)] to-[rgba(99,102,241,0.05)] mb-10">
+                  <div className="glass-card p-6 md:p-10 border-indigo-500/20 bg-gradient-to-br from-[rgba(17,24,39,0.8)] to-[rgba(99,102,241,0.05)] mb-10">
                     <h3 className="text-2xl font-bold mb-8 flex items-center gap-3 font-['Outfit']">
                       <div className="p-2 bg-indigo-500/10 rounded-lg border border-indigo-500/20">
                         <PlusCircle size={20} className="text-indigo-400" /> 
@@ -545,7 +545,7 @@ const Admin = () => {
               {/* TAB: QCM */}
               {contentTab === 'qcm' && (
                 <div className="animate-in fade-in">
-                  <div className="glass-card p-10 border-emerald-500/20 bg-gradient-to-br from-[rgba(17,24,39,0.8)] to-[rgba(52,211,153,0.05)] mb-10">
+                  <div className="glass-card p-6 md:p-10 border-emerald-500/20 bg-gradient-to-br from-[rgba(17,24,39,0.8)] to-[rgba(52,211,153,0.05)] mb-10">
                     <h3 className="text-2xl font-bold mb-8 flex items-center gap-3 font-['Outfit']">
                       <div className="p-2 bg-emerald-500/10 rounded-lg border border-emerald-500/20">
                         <PlusCircle size={20} className="text-emerald-400" />
@@ -623,7 +623,7 @@ const Admin = () => {
               {/* TAB: VIDEOS */}
               {contentTab === 'videos' && (
                 <div className="animate-in fade-in">
-                  <div className="glass-card p-10 border-blue-500/20 bg-gradient-to-br from-[rgba(17,24,39,0.8)] to-[rgba(59,130,246,0.05)] mb-10">
+                  <div className="glass-card p-6 md:p-10 border-blue-500/20 bg-gradient-to-br from-[rgba(17,24,39,0.8)] to-[rgba(59,130,246,0.05)] mb-10">
                     <h3 className="text-2xl font-bold mb-8 flex items-center gap-3 font-['Outfit']">
                       <div className="p-2 bg-blue-500/10 rounded-lg border border-blue-500/20">
                         <PlusCircle size={20} className="text-blue-400" />

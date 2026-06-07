@@ -59,12 +59,12 @@ const SubjectDetail = () => {
   };
 
   return (
-    <div className="pb-12">
-      <div className="flex items-center gap-4 mb-10 relative z-10">
-        <button onClick={() => navigate('/matieres')} className="btn-outline flex items-center gap-2 py-2 px-4 bg-[rgba(17,24,39,0.5)] border-[rgba(255,255,255,0.05)]">
+    <div className="pb-8 md:pb-12">
+      <div className="flex flex-col sm:flex-row sm:items-center gap-4 mb-8 md:mb-10 relative z-10">
+        <button onClick={() => navigate('/matieres')} className="btn-outline flex items-center gap-2 py-2 px-4 bg-[rgba(17,24,39,0.5)] border-[rgba(255,255,255,0.05)] w-fit">
           <ArrowLeft size={16} /> Retour
         </button>
-        <h2 className="text-4xl font-extrabold flex items-center gap-4 font-['Outfit']">
+        <h2 className="text-3xl md:text-4xl font-extrabold flex items-center gap-4 font-['Outfit']">
           <div className="w-12 h-12 rounded-xl flex items-center justify-center border shadow-lg" style={{ backgroundColor: `${matiere.color}15`, borderColor: `${matiere.color}40`, color: matiere.color }}>
             {matiere.icon === '🇬🇧' ? <Globe2 size={28} color={matiere.color} /> : matiere.icon}
           </div>
@@ -72,7 +72,7 @@ const SubjectDetail = () => {
         </h2>
       </div>
 
-      <div className="flex gap-2 mb-10 bg-[rgba(17,24,39,0.5)] p-2 rounded-2xl border border-[rgba(255,255,255,0.05)] w-fit backdrop-blur-md relative z-10 shadow-lg">
+      <div className="flex flex-wrap gap-2 mb-8 md:mb-10 bg-[rgba(17,24,39,0.5)] p-2 rounded-2xl border border-[rgba(255,255,255,0.05)] w-fit backdrop-blur-md relative z-10 shadow-lg">
         {[
           { id: 'fiches', label: 'Fiches de cours', icon: <BookOpen size={18} /> },
           { id: 'qcm', label: 'Quiz / QCM', icon: <Brain size={18} /> },
@@ -100,7 +100,7 @@ const SubjectDetail = () => {
               <button onClick={() => setOpenFiche(null)} className="text-indigo-400 hover:text-indigo-300 mb-6 text-sm font-bold flex items-center gap-2 transition-colors">
                 ← Retour à la liste des fiches
               </button>
-              <div className="glass-card p-10 leading-relaxed shadow-2xl relative overflow-hidden">
+              <div className="glass-card p-6 md:p-10 leading-relaxed shadow-2xl relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 rounded-full mix-blend-screen filter blur-[100px] opacity-10 pointer-events-none" style={{ backgroundColor: matiere.color }}></div>
                 
                 <div className="inline-block px-3 py-1 bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] rounded-md text-xs font-bold text-[#9ca3af] uppercase tracking-widest mb-4">
@@ -143,7 +143,7 @@ const SubjectDetail = () => {
         {activeTab === 'qcm' && (
           <div className="max-w-3xl mx-auto">
             {qcmFinished ? (
-              <div className="glass-card p-12 text-center relative overflow-hidden">
+              <div className="glass-card p-8 md:p-12 text-center relative overflow-hidden">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-500 rounded-full mix-blend-screen filter blur-[150px] opacity-20 pointer-events-none"></div>
                 
                 <div className="text-7xl mb-6 relative z-10">{qcmScore / matiere.qcm.length >= 0.8 ? '🏆' : '📚'}</div>
@@ -165,7 +165,7 @@ const SubjectDetail = () => {
                   ))}
                 </div>
                 
-                <div className="glass-card p-10 relative overflow-hidden">
+                <div className="glass-card p-6 md:p-10 relative overflow-hidden">
                   <div className="absolute top-0 right-0 w-40 h-40 rounded-full mix-blend-screen filter blur-[80px] opacity-10 pointer-events-none" style={{ backgroundColor: matiere.color }}></div>
                   
                   <div className="inline-block px-3 py-1 bg-[rgba(255,255,255,0.05)] border border-[rgba(255,255,255,0.1)] rounded-md text-xs font-bold text-[#9ca3af] uppercase tracking-widest mb-6 relative z-10">

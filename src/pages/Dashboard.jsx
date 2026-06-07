@@ -35,7 +35,7 @@ const Dashboard = () => {
         <p className="text-[#9ca3af] text-lg">Voici un aperçu de ton espace de révision premium</p>
       </div>
 
-      <div ref={statsRef} className="grid-cols-4 mb-12">
+      <div ref={statsRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
         <div className="glass-card p-6 flex flex-col justify-between group cursor-default">
           <div className="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center mb-6 border border-indigo-500/20 group-hover:scale-110 transition-transform">
             <BookOpen className="text-indigo-400" size={24} />
@@ -74,7 +74,7 @@ const Dashboard = () => {
         </div>
       </div>
 
-      <div className="grid-cols-2">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div className="glass-card p-8">
           <h3 className="text-2xl font-bold mb-8 flex items-center gap-3 font-['Outfit']">
             <div className="p-2 bg-indigo-500/10 rounded-lg border border-indigo-500/20">
